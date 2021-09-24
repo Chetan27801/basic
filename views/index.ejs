@@ -3,21 +3,61 @@
     <head>
         <title>Intro to Node and MongoDB</title>
     </head>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body{
+            font-family: 'Roboto', sans-serif;
+            background: #fff;
+            margin: 20px;
+        }
+        .main-heading{
+            /* margin: 10px 0px; */
+            font-weight: 800;
+            width: 100%;
+            text-align: center;
+        }
+        .input-name{
+            display: flex;
+        }
+        .input-name>input{
+            margin: 10px;
+        }
+        .input-id{
+            margin: 10px        ;
+        }
+        td{
+            font-weight: bold;
+        }
+    </style>
     <body onload="loader()">
     <script>
         function loader(){
 
         }
     </script>    
-        <h1>Into to Node and MongoDB</h1>
+        <h1 class="main-heading">Intro to Node and MongoDB</h1>
         <form method="post">
-            <label>Enter Your Name</label><br>
-            <input type="text" name="firstName" placeholder="Enter first name..." required>
-            <input type="text" name="lastName" placeholder="Enter last name..." required>
-            <input type="text" name="userid" placeholder="user id">
-            <input type="submit" value="Add Name" formaction="/addname">
-            <button formaction="/updatename">updatename</button>
+            <div class="form-group">
+                <h2>Enter User Name</h2>
+                <div class="input-name">
+                    <input class="form-control" type="text" name="firstName" placeholder="Enter first name..." required>
+                    <input class="form-control" type="text" name="lastName" placeholder="Enter last name..." required>
+                </div>
+                <div class="input-id">
+                    <h2>Enter UserId</h2>
+                    <input class="form-control" type="text" name="userid" placeholder="user id">
+                </div>
+                <button class="btn btn-primary" type="submit"  formaction="/addname">Add name</button>
+                <button class="btn btn-primary" formaction="/updatename">updatename</button>
+            </div>
         </form>
         <br>
         <br>
@@ -26,14 +66,16 @@
         <!-- <% for(var i = 0; i < wow.length; i++) { %>
         <p> <%=wow[i].firstName%> ____  <%=wow[i].lastName%></p>
         <%}%> -->
-        <table border="5">
-            <tr>
-                <td>Sno.</td>
-                <td>firstName</td>
-                <td>lastName</td>
-                <td>ID</td>
-                <td>Delete</td>
-            </tr>
+        <table border=1 class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Sno.</th>
+                    <th>firstName</th>
+                    <th>lastName</th>
+                    <th>ID</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
             <form method="POST">
             <% for(let i=0;i<wow.length;++i){ %>
                 <tr>
@@ -41,7 +83,7 @@
                     <td><%=wow[i].firstName%></td>
                     <td><%=wow[i].lastName%></td>
                     <td><%=wow[i]._id%></td>
-                    <td><button id="<%=wow[i]._id%>" formaction="/deletename/<%=wow[i]._id%>">Delete</button></td>
+                    <td><button class="btn btn-danger" id="<%=wow[i]._id%>" formaction="/deletename/<%=wow[i]._id%>">Delete</button></td>
                 </tr>
             <%}%>    
         </form>
